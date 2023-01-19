@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import static in.reqres.helpers.ApiUtils.*;
 import static in.reqres.specs.RequestSpecs.REQUEST_SPECIFICATION;
 import static in.reqres.specs.ResponseSpecs.*;
+import static io.qameta.allure.SeverityLevel.BLOCKER;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItems;
@@ -55,7 +56,7 @@ class UsersTests extends TestBase {
 
     }
 
-    @Severity(NORMAL)
+    @Severity(BLOCKER)
     @Feature("POST")
     @Tag("api")
     @Owner("Smkjke")

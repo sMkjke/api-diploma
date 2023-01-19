@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import static in.reqres.helpers.ApiUtils.*;
 import static in.reqres.specs.ResponseSpecs.NOT_FOUND_RESPONSE_SPECIFICATION;
-import static io.qameta.allure.SeverityLevel.NORMAL;
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LoginTests extends TestBase {
 
-    @Severity(NORMAL)
+    @Severity(CRITICAL)
     @Feature("POST")
     @Tag("api")
     @Owner("Smkjke")
