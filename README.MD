@@ -1,4 +1,5 @@
-# <img width="%60" title="Allure TestOPS" src="images/logo/reqres.png"> Проект по автоматизации тестирования API для [reqres.in](https://reqres.in/)
+# <img width="%60" title="Allure TestOPS" src="images/logo/reqres.png">
+# Проект по автоматизации тестирования API для [reqres.in](https://reqres.in/)
 
 ##	Содержание
 
@@ -54,7 +55,7 @@ gradle clean test
 значок *Allure Report*, кликнув по которому, откроется страница с сформированным html-отчетом.
 
 
-## <img width="4%" title="Allure Report" src="images/logo/Allure.svg"> Отчет о результатах тестирования в [Allure Report](https://jenkins.autotests.cloud/job/smkjke_diploma_ui/11/allure/)
+## <img width="4%" title="Allure Report" src="images/logo/Allure.svg"> Отчет о результатах тестирования в [Allure Report](https://jenkins.autotests.cloud/job/smkjke_diploma_api/3/allure/)
 
 <p align="center">
   <img src="images/allure.png" alt="allure-report1" width="900">
@@ -64,7 +65,7 @@ gradle clean test
 </p>
 
 
-## <img width="4%" title="Allure TestOPS" src="images/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/launch/18347)
+## <img width="4%" title="Allure TestOPS" src="images/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/launch/18702)
 
 ## Основной дашборд
 
