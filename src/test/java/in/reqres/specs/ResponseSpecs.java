@@ -17,4 +17,14 @@ public class ResponseSpecs {
             .expectStatusCode(201)
             .build();
 
+    public static ResponseSpecification DELETE_USER_RESPONSE_SPECIFICATION = new ResponseSpecBuilder()
+            .log(BODY)
+            .expectStatusCode(204)
+            .build();
+
+    public static ResponseSpecification NOT_FOUND_RESPONSE_SPECIFICATION = new ResponseSpecBuilder()
+            .log(BODY)
+            .expectStatusCode(400)
+            .build();
+
 }

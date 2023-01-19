@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class GenerateData {
 
-    Faker faker = new Faker();
+    private Faker faker = new Faker();
 
     private String
             name = faker.name().fullName(),

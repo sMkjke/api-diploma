@@ -1,5 +1,6 @@
 package in.reqres.tests;
 
+import in.reqres.models.UserList;
 import in.reqres.models.User;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -10,13 +11,13 @@ import org.junit.jupiter.api.Test;
 
 import static in.reqres.helpers.ApiUtils.*;
 import static in.reqres.specs.RequestSpecs.REQUEST_SPECIFICATION;
-import static in.reqres.specs.ResponseSpecs.RESPONSE_SPECIFICATION;
+import static in.reqres.specs.ResponseSpecs.*;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UsersTests extends TestBase {
+class UsersTests extends TestBase {
 
     @Severity(NORMAL)
     @Feature("GET")
@@ -40,9 +41,11 @@ public class UsersTests extends TestBase {
     @Owner("Smkjke")
     @Test
     @DisplayName("Update User")
-    void UpdateUser() {
-        User randomUser = generateUser();
-        User response = updateUser(randomUser);
+    void successUpdateUser() {
+        var randomUser = generateUser();
+        var response = doPut(randomUser, "/users/10", RESPONSE_SPECIFICATION)
+                .extract()
+                .as(User.class);
 
         assertEquals(randomUser.getName(), response.getName());
         assertEquals(randomUser.getJob(), response.getJob());
@@ -59,8 +62,10 @@ public class UsersTests extends TestBase {
     @Test
     @DisplayName("Successfully user registration")
     void SuccessUserRegistration() {
-        User randomUser = generateUser();
-        User response = createUser(randomUser);
+        var randomUser = generateUser();
+        var response = doPost(randomUser, "/users", CREATE_USER_RESPONSE_SPECIFICATION)
+                .extract()
+                .as(User.class);
 
         assertEquals(randomUser.getName(), response.getName());
         assertEquals(randomUser.getJob(), response.getJob());
@@ -68,6 +73,41 @@ public class UsersTests extends TestBase {
         assertEquals(randomUser.getFirstName(), response.getFirstName());
         assertEquals(randomUser.getLastName(), response.getLastName());
 
+    }
+
+    @Severity(NORMAL)
+    @Feature("DELETE")
+    @Tag("api")
+    @Owner("Smkjke")
+    @Test
+    @DisplayName("Successfully delete user")
+    void successDeleteUser() {
+        given(REQUEST_SPECIFICATION)
+                .when()
+                .delete("users/5")
+                .then()
+                .spec(DELETE_USER_RESPONSE_SPECIFICATION);
+    }
+
+    @Severity(NORMAL)
+    @Feature("GET")
+    @Tag("api")
+    @Owner("Smkjke")
+    @Test
+    @DisplayName("Check list size and expected user")
+    void SizeOfUsersAndExpectedUserCheck() {
+
+        var response = doGet("/users?page=1", RESPONSE_SPECIFICATION)
+                .extract().as(UserList.class);
+
+        assertEquals(6, response.getUserList().size());
+
+        var expectedUser = response.getUserList().get(2);
+
+        assertEquals("emma.wong@reqres.in", expectedUser.getEmail());
+        assertEquals("Emma", expectedUser.getFirstName());
+        assertEquals("Wong", expectedUser.getLastName());
+        assertEquals("https://reqres.in/img/faces/3-image.jpg", expectedUser.getAvatar());
     }
 
 }
